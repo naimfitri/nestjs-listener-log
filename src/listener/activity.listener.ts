@@ -35,7 +35,7 @@ export class ActivityLogListener {
       this.logger.error('Failed to save activity log to MariaDB', e);
     }
 
-    //Save to Elasticsearch (commented out until ES is properly configured)
+    //Save to Elasticsearch 
     try {
       if (this.elasticsearchService) {
         await this.elasticsearchService.index({

@@ -14,4 +14,4 @@ import { SearchModule } from '../search/search.module';
   ],
   providers: [ActivityLogListener],
 })
-export class BroadcastlistenerModule {}
+export class ActivityModule {}

@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { BroadcastlistenerModule } from './broadcastlistener/broadcastlistener.module';
+import { ActivityModule } from './listener/activity.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SearchModule } from './search/search.module';
-import { ActivityLog } from './broadcastlistener/activity.entity';
-import { LogModule, ActivityLogInterceptor } from 'nestjs-session-log';
+import { ActivityLog } from './listener/activity.entity';
+import { LogModule } from 'nestjs-session-log';
 import { EventEmitterModule } from '@nestjs/event-emitter';
-import { APP_INTERCEPTOR } from '@nestjs/core';
 
 @Module({
   imports: [
@@ -36,13 +35,11 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
       },
       broadcast: true,
     }),
-    BroadcastlistenerModule
+    ActivityModule
   ],
   controllers: [AppController],
   providers: [
     AppService,
-    // Note: ActivityLogInterceptor not needed in listener app
-    // Only producer apps need the interceptor
   ],
 })
 export class AppModule { }

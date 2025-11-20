@@ -37,9 +37,13 @@ export class ActivityLogListener {
 
     //Save to Elasticsearch 
     try {
+
+      const date = new Date().toISOString().split('T')[0]; 
+      const indexName = `activity-logs-${date}`;
+
       if (this.elasticsearchService) {
         await this.elasticsearchService.index({
-          index: 'activity-logs',
+          index: indexName,
           body: {
             ...payload,
             timestamp: new Date().toISOString(),

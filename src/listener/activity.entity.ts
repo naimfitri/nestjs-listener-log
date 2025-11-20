@@ -15,7 +15,7 @@ export class ActivityLog {
   url: string;
 
   @Column()
-  processType: string;
+  method: string;
 
   @Column()
   responseTimeMs: number;
